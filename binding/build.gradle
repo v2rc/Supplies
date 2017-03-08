@@ -1,0 +1,17 @@
+android {
+    defaultConfig {
+        minSdkVersion 9
+        versionCode 1
+    }
+
+    dataBinding {
+        addDefaultAdapters true
+        enabled true
+    }
+}
+
+dependencies {
+    provided "com.android.support:design:$androidSupportVersion"
+    provided "com.android.support:recyclerview-v7:$androidSupportVersion"
+    provided "com.android.support:support-core-ui:$androidSupportVersion"
+}

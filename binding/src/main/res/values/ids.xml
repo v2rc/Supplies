@@ -1,0 +1,3 @@
+<resources>
+    <item name="on_page_change_listener" type="id" />
+</resources>

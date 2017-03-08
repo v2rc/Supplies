@@ -9,6 +9,23 @@
 Usage
 -----
 
+Every single library is unique in itself and provides information about how it
+should be used. In general all dependencies are `provided` dependencies.
+
+Projects depending on the supplies have to make sure to define a `compile`
+dependency for all required and used `provided` dependencies.
+
+ * [*Binding Supplies*](binding) — `DataBindingPagerAdapter`
+                                 · `DataBindingAdapter`
+                                 · `DataBindingViewHolder`
+ * [*Logging Supplies*](logging) — `FirebaseTree`
+                                 · `LogToTimber`
+ * [*Parcel Supplies*](parcel) — `LocalDateTimeParcelAdapter`
+                               · `LocalDateParcelAdapter`
+                               · `LocalTimeParcelAdapter`
+ * [*Reactive Supplies*](reactive) — `ObservableGlue`
+ * [*Reactive2 Supplies*](reactive2) — `ObservableGlue`
+
 
 Installation
 ------------
@@ -17,6 +34,16 @@ Add [JitPack][4] to your repositories and *Supplies* to your dependencies
 
     dependencies {
         compile "berlin.volders:supplies:$suppliesVersion"
+    }
+
+Also any of the single libraries can be added directly
+
+    dependencies {
+        compile "berlin.volders.supplies:binding:$suppliesVersion"
+        compile "berlin.volders.supplies:logging:$suppliesVersion"
+        compile "berlin.volders.supplies:parcel:$suppliesVersion"
+        compile "berlin.volders.supplies:reactive:$suppliesVersion"
+        compile "berlin.volders.supplies:reactive2:$suppliesVersion"
     }
 
 

@@ -1,0 +1,12 @@
+android {
+    defaultConfig {
+        minSdkVersion 15
+        versionCode 1
+    }
+}
+
+dependencies {
+    //noinspection GradleDynamicVersion
+    provided 'com.jakewharton.timber:timber:4.5.+'
+    provided "com.google.firebase:firebase-crash:$firebaseVersion"
+}

@@ -1,0 +1,13 @@
+android {
+    defaultConfig {
+        minSdkVersion 15
+        versionCode 1
+    }
+}
+
+dependencies {
+    //noinspection GradleDynamicVersion
+    provided 'com.jakewharton.threetenabp:threetenabp:1.0.+'
+    //noinspection GradleDynamicVersion
+    provided 'com.ryanharter.auto.value:auto-value-parcel-adapter:0.2.+'
+}

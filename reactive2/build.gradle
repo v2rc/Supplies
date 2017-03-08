@@ -1,0 +1,15 @@
+android {
+    defaultConfig {
+        minSdkVersion 9
+        versionCode 1
+    }
+
+    dataBinding {
+        enabled true
+    }
+}
+
+dependencies {
+    //noinspection GradleDynamicVersion
+    provided 'io.reactivex.rxjava2:rxjava:2.0.+'
+}

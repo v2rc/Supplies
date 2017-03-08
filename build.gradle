@@ -1,0 +1,83 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.2.3'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
+    }
+}
+
+ext {
+    androidSupportVersion = '25.2.+'
+    firebaseVersion = '10.2.+'
+}
+
+subprojects {
+    repositories {
+        jcenter()
+    }
+
+    apply plugin: 'com.android.library'
+    apply plugin: 'com.github.dcendents.android-maven'
+
+    android {
+        compileSdkVersion 25
+        buildToolsVersion '25.0.2'
+
+        defaultConfig {
+            targetSdkVersion 25
+            testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        }
+
+        dataBinding {
+            addDefaultAdapters false
+            enabled false
+        }
+    }
+
+    configurations.default {
+        exclude group: 'com.android.databinding'
+        exclude group: 'com.android.support'
+    }
+
+    configurations.androidTestCompile {
+        extendsFrom configurations.provided
+        exclude group: 'com.android.databinding', module: 'compiler'
+    }
+
+    dependencies {
+        compile "com.android.support:support-v4:$project.androidSupportVersion"
+        provided "com.android.support:support-annotations:$project.androidSupportVersion"
+        testCompile 'junit:junit:4.12'
+        androidTestCompile 'com.android.support.test:runner:0.5'
+    }
+
+    task sourcesJar(type: Jar) {
+        from android.sourceSets.main.java.srcDirs
+        classifier = 'sources'
+    }
+
+    task javadoc(type: Javadoc) {
+        failOnError false
+        source = android.sourceSets.main.java.sourceFiles
+        classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+        classpath += configurations.compile
+        classpath += configurations.provided
+    }
+
+    task javadocJar(type: Jar, dependsOn: javadoc) {
+        classifier = 'javadoc'
+        from javadoc.destinationDir
+    }
+
+    artifacts {
+        archives sourcesJar
+        archives javadocJar
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

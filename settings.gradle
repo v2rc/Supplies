@@ -1,3 +1,4 @@
+include ':all'
 include ':binding'
 include ':logging'
 include ':parcel'

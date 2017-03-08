@@ -33,7 +33,7 @@ Installation
 Add [JitPack][4] to your repositories and *Supplies* to your dependencies
 
     dependencies {
-        compile "berlin.volders:supplies:$suppliesVersion"
+        compile "berlin.volders.supplies:all:$suppliesVersion"
     }
 
 Also any of the single libraries can be added directly

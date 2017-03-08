@@ -1,0 +1,14 @@
+android {
+    defaultConfig {
+        minSdkVersion 15
+        versionCode 1
+    }
+}
+
+dependencies {
+    compile project(':binding')
+    compile project(':logging')
+    compile project(':parcel')
+    compile project(':reactive')
+    compile project(':reactive2')
+}

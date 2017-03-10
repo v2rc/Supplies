@@ -19,12 +19,16 @@ Usage
 
 This is particularly useful to observe user input.
 
+    provided 'io.reactivex.rxjava2:rxjava:2.0.+'
+
 In contrast to Rx1, `null` values are not supported with Rx2. Therefore
 only primitive values are supported directly. For an `ObservableField` it is
 necessary to implement a Null Object pattern or wrap the field value with an
 `Optional` or similar.
 
-    provided 'io.reactivex.rxjava2:rxjava:2.0.+'
+    ObservableGlue.with(observableField, 0, null, o -> Optional.ofNullable(o.get()))
+                  ....
+                  .subscribe(onNext);
 
 
 Installation

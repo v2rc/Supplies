@@ -27,11 +27,10 @@ import android.databinding.ObservableLong;
 import android.databinding.ObservableShort;
 import android.support.annotation.NonNull;
 
-import java.util.concurrent.atomic.AtomicBoolean;
-
 import rx.Subscriber;
-import rx.Subscription;
+import rx.functions.Action0;
 import rx.functions.Func1;
+import rx.subscriptions.Subscriptions;
 
 /**
  * Glues an {@link Observable} and an {@link rx.Observable} together.
@@ -54,12 +53,11 @@ public class ObservableGlue<T extends Observable, R> implements rx.Observable.On
 
     @Override
     public void call(Subscriber<? super R> subscriber) {
-        subscriber.add(new OnGlue(subscriber));
+        subscriber.add(Subscriptions.create(new OnGlue(subscriber)));
     }
 
-    private class OnGlue extends Observable.OnPropertyChangedCallback implements Subscription {
+    private class OnGlue extends Observable.OnPropertyChangedCallback implements Action0 {
 
-        private final AtomicBoolean isUnsubscribed = new AtomicBoolean();
         private final Subscriber<? super R> subscriber;
 
         OnGlue(Subscriber<? super R> subscriber) {
@@ -71,7 +69,7 @@ public class ObservableGlue<T extends Observable, R> implements rx.Observable.On
         @Override
         public void onPropertyChanged(Observable observable, int propertyId) {
             if (!ObservableGlue.this.observable.equals(observable)) {
-                throw new IllegalStateException("observing wrong observable");
+                throw new AssertionError("observing wrong observable");
             }
             if (ObservableGlue.this.propertyId == propertyId) {
                 emit();
@@ -79,20 +77,22 @@ public class ObservableGlue<T extends Observable, R> implements rx.Observable.On
         }
 
         @Override
-        public void unsubscribe() {
-            if (isUnsubscribed.compareAndSet(false, true)) {
-                observable.removeOnPropertyChangedCallback(this);
-            }
-        }
-
-        @Override
-        public boolean isUnsubscribed() {
-            return isUnsubscribed.get();
+        public void call() {
+            observable.removeOnPropertyChangedCallback(this);
         }
 
         private void emit() {
             if (!subscriber.isUnsubscribed()) {
-                subscriber.onNext(value.call(observable));
+                try {
+                    R next = value.call(observable);
+                    if (!subscriber.isUnsubscribed()) {
+                        subscriber.onNext(next);
+                    }
+                } catch (Exception error) {
+                    if (!subscriber.isUnsubscribed()) {
+                        subscriber.onError(error);
+                    }
+                }
             }
         }
     }

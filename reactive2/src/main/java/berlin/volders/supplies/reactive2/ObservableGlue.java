@@ -73,7 +73,7 @@ public class ObservableGlue<T extends Observable, R> implements FlowableOnSubscr
         @Override
         public void onPropertyChanged(Observable observable, int propertyId) {
             if (!ObservableGlue.this.observable.equals(observable)) {
-                throw new IllegalStateException("observing wrong observable");
+                throw new AssertionError("observing wrong observable");
             }
             if (ObservableGlue.this.propertyId == propertyId) {
                 emit();
@@ -95,9 +95,9 @@ public class ObservableGlue<T extends Observable, R> implements FlowableOnSubscr
                     if (!emitter.isCancelled()) {
                         emitter.onNext(next);
                     }
-                } catch (Exception e) {
+                } catch (Exception error) {
                     if (!emitter.isCancelled()) {
-                        emitter.onError(e);
+                        emitter.onError(error);
                     }
                 }
             }

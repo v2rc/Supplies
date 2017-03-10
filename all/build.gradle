@@ -5,6 +5,8 @@ android {
     }
 }
 
+conf2ScopeMappings.addMapping 200, configurations.compile, 'compile'
+
 dependencies {
     compile project(':binding')
     compile project(':logging')

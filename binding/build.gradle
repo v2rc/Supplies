@@ -11,6 +11,7 @@ android {
 }
 
 dependencies {
+    compile "com.android.support:support-v4:$androidSupportVersion"
     provided "com.android.support:design:$androidSupportVersion"
     provided "com.android.support:recyclerview-v7:$androidSupportVersion"
     provided "com.android.support:support-core-ui:$androidSupportVersion"

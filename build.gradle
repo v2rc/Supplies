@@ -47,8 +47,10 @@ subprojects {
         exclude group: 'com.android.databinding', module: 'compiler'
     }
 
+    conf2ScopeMappings.addMapping 200, configurations.compile, 'provided'
+    conf2ScopeMappings.addMapping 300, configurations.provided, 'provided'
+
     dependencies {
-        compile "com.android.support:support-v4:$project.androidSupportVersion"
         provided "com.android.support:support-annotations:$project.androidSupportVersion"
         testCompile 'junit:junit:4.12'
         androidTestCompile 'com.android.support.test:runner:0.5'

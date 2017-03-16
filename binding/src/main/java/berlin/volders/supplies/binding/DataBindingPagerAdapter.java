@@ -18,6 +18,7 @@ package berlin.volders.supplies.binding;
 
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
+import android.support.annotation.CallSuper;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
@@ -68,7 +69,7 @@ public abstract class DataBindingPagerAdapter<M> extends PagerAdapter {
     }
 
     @Override
-    public ViewDataBinding instantiateItem(ViewGroup container, int position) {
+    public final ViewDataBinding instantiateItem(ViewGroup container, int position) {
         M item = getItem(position);
         DataBinder<? super M> binder = binders.tie(item);
         LayoutInflater inflater = LayoutInflater.from(container.getContext());
@@ -79,12 +80,13 @@ public abstract class DataBindingPagerAdapter<M> extends PagerAdapter {
     }
 
     @Override
+    @CallSuper
     public void destroyItem(ViewGroup container, int position, Object object) {
         container.removeView(((ViewDataBinding) object).getRoot());
     }
 
     @Override
-    public boolean isViewFromObject(View view, Object object) {
+    public final boolean isViewFromObject(View view, Object object) {
         return ((ViewDataBinding) object).getRoot() == view;
     }
 

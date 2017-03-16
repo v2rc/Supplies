@@ -16,6 +16,7 @@
 
 package berlin.volders.supplies.binding;
 
+import android.support.annotation.CallSuper;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
@@ -70,16 +71,18 @@ public abstract class DataBindingAdapter<M> extends RecyclerView.Adapter<DataBin
     protected abstract M getItem(int position);
 
     @Override
-    public int getItemViewType(int position) {
+    @LayoutRes
+    public final int getItemViewType(int position) {
         return binders.tie(getItem(position)).layoutRes;
     }
 
     @Override
-    public DataBindingViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public final DataBindingViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return DataBindingViewHolder.inflate(viewType, parent);
     }
 
     @Override
+    @CallSuper
     public void onBindViewHolder(DataBindingViewHolder holder, int position) {
         M item = getItem(position);
         holder.update(binders.tie(item).bindingId, item);

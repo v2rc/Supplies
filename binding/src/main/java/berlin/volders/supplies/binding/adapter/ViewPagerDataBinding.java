@@ -20,6 +20,8 @@ import android.databinding.BindingAdapter;
 import android.databinding.BindingMethod;
 import android.databinding.BindingMethods;
 import android.databinding.InverseBindingListener;
+import android.databinding.InverseBindingMethod;
+import android.databinding.InverseBindingMethods;
 import android.databinding.adapters.ListenerUtil;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -34,6 +36,11 @@ import berlin.volders.supplies.binding.R;
                 type = TabLayout.class,
                 attribute = "viewPager",
                 method = "setupWithViewPager")
+)
+@InverseBindingMethods(
+        @InverseBindingMethod(
+                type = ViewPager.class,
+                attribute = "currentItem")
 )
 public class ViewPagerDataBinding {
 

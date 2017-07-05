@@ -12,5 +12,5 @@ android {
 dependencies {
     compile "com.android.support:support-v4:$androidSupportVersion"
     //noinspection GradleDynamicVersion
-    provided 'io.reactivex:rxjava:1.2.+'
+    provided 'io.reactivex:rxjava:1.3.+'
 }

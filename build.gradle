@@ -10,7 +10,7 @@ buildscript {
 }
 
 ext {
-    androidSupportVersion = '25.2.+'
+    androidSupportVersion = '25.3.+'
     firebaseVersion = '10.2.+'
 }
 

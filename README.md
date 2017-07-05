@@ -24,7 +24,9 @@ dependency for all required and used `provided` dependencies.
                                · `LocalDateParcelAdapter`
                                · `LocalTimeParcelAdapter`
  * [*Reactive Supplies*](reactive) — `ObservableGlue`
+                                   · `RxOkCall`
  * [*Reactive2 Supplies*](reactive2) — `ObservableGlue`
+                                     · `RxOkCall`
 
 
 Installation

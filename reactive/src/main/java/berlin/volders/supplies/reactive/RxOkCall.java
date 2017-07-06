@@ -28,6 +28,10 @@ import rx.SingleSubscriber;
 import rx.functions.Action0;
 import rx.subscriptions.Subscriptions;
 
+/**
+ * Wraps {@link Call} supplying an {@link Single} which will emit the response or any error upon
+ * subscription
+ */
 public class RxOkCall extends Single<Response> {
 
     private RxOkCall(final Call call) {
@@ -59,10 +63,24 @@ public class RxOkCall extends Single<Response> {
         });
     }
 
+    /**
+     * Utility method returning a {@link Single} which will emit the {@link Response} for
+     * the passed {@link Call}
+     *
+     * @param call {@link Call} return by submitting a {@link Request} to {@link OkHttpClient}
+     * @return
+     */
     public static RxOkCall from(Call call) {
         return new RxOkCall(call);
     }
 
+    /**
+     * Utility method returning a {@link Single} which will emit the {@link Response} for
+     * a {@link Request}
+     *
+     * @param request
+     * @return
+     */
     public static RxOkCall with(Request request) {
         return with(request, new OkHttpClient());
     }

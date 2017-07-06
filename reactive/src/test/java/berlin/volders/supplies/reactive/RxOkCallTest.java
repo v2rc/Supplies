@@ -39,7 +39,7 @@ public class RxOkCallTest {
 
         AssertableSubscriber<Response> subscriber
                 = RxOkCall.from(call).test();
-        call.succees(response);
+        call.doOnResponse(response);
 
         subscriber.assertNoErrors();
         subscriber.assertValue(response);
@@ -50,7 +50,7 @@ public class RxOkCallTest {
     public void from_failure() throws Exception {
         AssertableSubscriber<Response> subscriber
                 = RxOkCall.from(call).test();
-        call.fail();
+        call.doOnFailure();
 
         subscriber.assertNotCompleted();
         subscriber.assertError(IOException.class);

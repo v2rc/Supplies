@@ -8,6 +8,10 @@ Reactive2 Supplies
 Usage
 -----
 
+Collected Rx2 enclosed utilities.
+
+    provided 'io.reactivex:rxjava:2.1.+'
+
 ### ObservableGlue
 
 *ObservableGlue* provides a simple interface to glue an Android Data Binding
@@ -21,16 +25,16 @@ This is particularly useful to observe user input.
 
 ### RxOkCall
 
-*ObservableGlue* provides a simple interface to glue an Android Data Binding
-`Observable` field to a `Flowable` emitting changes within a reactive stream.
+*RxOkCall* provides an Rx wrapper around *OkHttp* exposing an
+`rx.Single<Response>` emitting the `okHttp3.Response` or any error
+to the reactive stream.
 
-    ObservableGlue.with(observableLong)
-                  ....
-                  .subscribe(onNext);
+    RxOkCall.from(call)
+            ....
+            .subscribe(consumeResponse, onError);
 
-SOMETEXT
+<!---->
 
-    provided 'io.reactivex.rxjava2:rxjava:2.1.+'
     provided 'com.squareup.okhttp3:okhttp:3.8.+'
 
 In contrast to Rx1, `null` values are not supported with Rx2. Therefore

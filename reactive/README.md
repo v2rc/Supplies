@@ -8,6 +8,10 @@ Reactive Supplies
 Usage
 -----
 
+Collected Rx1 enclosed utilities.
+
+    provided 'io.reactivex:rxjava:1.3.+'
+
 ### ObservableGlue
 
 *ObservableGlue* provides a simple interface to glue an Android Data Binding
@@ -20,19 +24,18 @@ stream.
 
 This is particularly useful to observe user input.
 
-### ObservableGlue
+### RxOkCall
 
-*ObservableGlue* provides a simple interface to glue an Android Data Binding
-`Observable` field to an `rx.Observable` emitting changes within a reactive
-stream.
+*RxOkCall* provides an Rx wrapper around *OkHttp* exposing an
+`rx.Single<Response>` emitting the `okHttp3.Response` or any error
+to the reactive stream.
 
-    ObservableGlue.with(observableField)
-                  ....
-                  .subscribe(onNext);
+    RxOkCall.from(call)
+            ....
+            .subscribe(consumeResponse, onError);
 
-SOMETEXT
+<!---->
 
-    provided 'io.reactivex:rxjava:1.3.+'
     provided 'com.squareup.okhttp3:okhttp:3.8.+'
 
 

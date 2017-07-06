@@ -47,11 +47,11 @@ class StubCall implements Call {
         return null;
     }
 
-    void succees(Response response) throws IOException {
+    void doOnResponse(Response response) throws IOException {
         responseCallback.onResponse(this, response);
     }
 
-    void fail() {
+    void doOnFailure() {
         responseCallback.onFailure(this, new IOException());
     }
 }

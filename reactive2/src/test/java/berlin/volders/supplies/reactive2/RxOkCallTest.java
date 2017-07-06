@@ -35,7 +35,7 @@ public class RxOkCallTest {
 
         TestObserver<Response> observer
                 = RxOkCall.from(call).test();
-        call.succees(response);
+        call.doOnResponse(response);
 
         observer.assertSubscribed();
         observer.assertNoErrors();
@@ -46,7 +46,7 @@ public class RxOkCallTest {
     public void from_failure() throws Exception {
         TestObserver<Response> observer
                 = RxOkCall.from(call).test();
-        call.fail();
+        call.doOnFailure();
 
         observer.assertSubscribed();
         observer.assertError(IOException.class);
@@ -58,7 +58,8 @@ public class RxOkCallTest {
                 = RxOkCall.from(call).test();
         observer.dispose();
 
-        observer.assertNotSubscribed();
+//        https://github.com/ReactiveX/RxJava/issues/4514
+//        observer.assertNotSubscribed();
         assertThat(observer.isDisposed(), is(true));
         assertThat(call.isCanceled(), is(true));
     }

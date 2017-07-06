@@ -19,7 +19,19 @@ Usage
 
 This is particularly useful to observe user input.
 
-    provided 'io.reactivex.rxjava2:rxjava:2.0.+'
+### RxOkCall
+
+*ObservableGlue* provides a simple interface to glue an Android Data Binding
+`Observable` field to a `Flowable` emitting changes within a reactive stream.
+
+    ObservableGlue.with(observableLong)
+                  ....
+                  .subscribe(onNext);
+
+SOMETEXT
+
+    provided 'io.reactivex.rxjava2:rxjava:2.1.+'
+    provided 'com.squareup.okhttp3:okhttp:3.8.+'
 
 In contrast to Rx1, `null` values are not supported with Rx2. Therefore
 only primitive values are supported directly. For an `ObservableField` it is

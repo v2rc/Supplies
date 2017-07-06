@@ -20,7 +20,20 @@ stream.
 
 This is particularly useful to observe user input.
 
-    provided 'io.reactivex:rxjava:1.2.+'
+### ObservableGlue
+
+*ObservableGlue* provides a simple interface to glue an Android Data Binding
+`Observable` field to an `rx.Observable` emitting changes within a reactive
+stream.
+
+    ObservableGlue.with(observableField)
+                  ....
+                  .subscribe(onNext);
+
+SOMETEXT
+
+    provided 'io.reactivex:rxjava:1.3.+'
+    provided 'com.squareup.okhttp3:okhttp:3.8.+'
 
 
 Installation

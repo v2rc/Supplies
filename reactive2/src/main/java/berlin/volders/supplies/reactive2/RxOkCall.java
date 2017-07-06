@@ -16,6 +16,8 @@
 
 package berlin.volders.supplies.reactive2;
 
+import android.net.Uri;
+
 import java.io.IOException;
 
 import io.reactivex.Single;
@@ -29,7 +31,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 /**
- *
+ * Wraps {@link Call} into a cold {@link Single} which emits the response or any error
  */
 public class RxOkCall extends Single<Response> {
 
@@ -65,22 +67,62 @@ public class RxOkCall extends Single<Response> {
         });
     }
 
+    /**
+     * Creates {@link RxOkCall} from {@link Call}
+     *
+     * @param call {@link Call} to execute
+     * @return a {@link Single} emitting {@link Response} of the request
+     */
     public static RxOkCall from(Call call) {
         return new RxOkCall(call);
     }
 
+    /**
+     * Creates {@link RxOkCall} with a {@link Request} using a default
+     * instance of {@link OkHttpClient}
+     *
+     * @param request a {@link Request} to be submitted to the {@link OkHttpClient}
+     * @return {@link Single} emitting {@link Response} for the request
+     */
     public static RxOkCall with(Request request) {
         return with(request, new OkHttpClient());
     }
 
-    public static RxOkCall with(String url) {
-        Request request = new Request.Builder()
-                .url(url)
-                .build();
-        return with(request);
-    }
-
+    /**
+     * Creates {@link RxOkCall} with a {@link Request} using a provided
+     * instance of {@link OkHttpClient}
+     *
+     * @param request {@link Request} to be submitted to the {@link OkHttpClient}
+     * @param client  external reference to an {@link OkHttpClient}
+     * @return a {@link Single} emitting {@link Response} of the request
+     */
     public static RxOkCall with(Request request, OkHttpClient client) {
         return new RxOkCall(client.newCall(request));
+    }
+
+    /**
+     * Creates {@link RxOkCall} with a {@link Uri} using a default
+     * instance of {@link OkHttpClient}
+     *
+     * @param uri {@link Uri} containing the URL for the {@link Request}
+     * @return {@link Single} emitting {@link Response} for the request
+     */
+    public static RxOkCall with(Uri uri) {
+        return with(uri, new OkHttpClient());
+    }
+
+    /**
+     * Creates {@link RxOkCall} with a {@link Uri} using a provided
+     * instance of {@link OkHttpClient}
+     *
+     * @param uri    {@link Uri} containing the URL for the {@link Request}
+     * @param client external reference to an {@link OkHttpClient}
+     * @return {@link Single} emitting {@link Response} for the request
+     */
+    public static RxOkCall with(Uri uri, OkHttpClient client) {
+        Request request = new Request.Builder()
+                .url(uri.toString())
+                .build();
+        return with(request, client);
     }
 }

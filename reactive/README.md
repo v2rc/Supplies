@@ -1,6 +1,7 @@
 Reactive Supplies
 =================
 [![Release][1]][2]
+[![Versions][3]][4]
 
 *Reactive Supplies* utility library.
 
@@ -10,7 +11,7 @@ Usage
 
 Collected Rx1 enclosed utilities.
 
-    provided 'io.reactivex:rxjava:1.3.+'
+    implementation 'io.reactivex:rxjava:1.3.+'
 
 ### ObservableGlue
 
@@ -36,7 +37,7 @@ to the reactive stream.
 
 <!---->
 
-    provided 'com.squareup.okhttp3:okhttp:3.8.+'
+    provided 'com.squareup.okhttp3:okhttp:3.9.+'
 
 
 Installation
@@ -46,14 +47,14 @@ Add [JitPack][2] to your repositories and *Reactive Supplies* to your
 dependencies
 
     dependencies {
-        compile "berlin.volders.supplies:reactive:$suppliesVersion"
+        implementation "com.github.v2rc.supplies:reactive:$suppliesVersion"
     }
 
 
 License
 -------
 
-    Copyright (C) 2016 volders GmbH with <3 in Berlin
+    Copyright (C) 2016-2017  volders GmbH with <3 in Berlin
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -68,5 +69,7 @@ License
     limitations under the License.
 
 
-  [1]: https://jitpack.io/v/berlin.volders.supplies/reactive.svg
-  [2]: https://jitpack.io/#berlin.volders.supplies/reactive
+  [1]: https://jitpack.io/v/com.github.v2rc.supplies/reactive.svg
+  [2]: https://jitpack.io/#com.github.v2rc.supplies/reactive
+  [3]: https://asapi.herokuapp.com/com.github.v2rc.supplies/reactive@svg
+  [4]: https://asapi.herokuapp.com/com.github.v2rc.supplies/reactive

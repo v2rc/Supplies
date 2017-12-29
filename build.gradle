@@ -1,21 +1,23 @@
 buildscript {
     repositories {
+        google()
         jcenter()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.0'
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
+        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
     }
 }
 
 ext {
-    androidSupportVersion = '25.3.+'
-    firebaseVersion = '10.2.+'
+    androidSupportVersion = '26.1.+'
+    firebaseVersion = '11.8.+'
 }
 
 subprojects {
     repositories {
+        google()
         jcenter()
     }
 
@@ -23,11 +25,11 @@ subprojects {
     apply plugin: 'com.github.dcendents.android-maven'
 
     android {
-        compileSdkVersion 25
-        buildToolsVersion '25.0.2'
+        compileSdkVersion 26
+        buildToolsVersion '26.0.3'
 
         defaultConfig {
-            targetSdkVersion 25
+            targetSdkVersion 26
             testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         }
 
@@ -37,36 +39,25 @@ subprojects {
         }
     }
 
-    configurations.default {
-        exclude group: 'com.android.databinding'
-        exclude group: 'com.android.support'
-    }
-
-    configurations.androidTestCompile {
-        extendsFrom configurations.provided
-        exclude group: 'com.android.databinding', module: 'compiler'
-    }
-
-    conf2ScopeMappings.addMapping 200, configurations.compile, 'provided'
-    conf2ScopeMappings.addMapping 300, configurations.provided, 'provided'
+    conf2ScopeMappings.addMapping 200, configurations.api, 'provided'
+    conf2ScopeMappings.addMapping 300, configurations.implementation, 'provided'
+    conf2ScopeMappings.addMapping 400, configurations.compileOnly, 'provided'
 
     dependencies {
-        provided "com.android.support:support-annotations:$project.androidSupportVersion"
-        testCompile 'junit:junit:4.12'
-        androidTestCompile 'com.android.support.test:runner:0.5'
+        compileOnly "com.android.support:support-annotations:$project.androidSupportVersion"
+        testImplementation 'junit:junit:4.12'
+        androidTestImplementation 'com.android.support.test:runner:1.0.1'
     }
 
     task sourcesJar(type: Jar) {
-        from android.sourceSets.main.java.srcDirs
         classifier = 'sources'
+        from android.sourceSets.main.java.srcDirs
     }
 
     task javadoc(type: Javadoc) {
         failOnError false
         source = android.sourceSets.main.java.sourceFiles
         classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-        classpath += configurations.compile
-        classpath += configurations.provided
     }
 
     task javadocJar(type: Jar, dependsOn: javadoc) {

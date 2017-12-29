@@ -1,6 +1,7 @@
 Binding Supplies
 ================
 [![Release][1]][2]
+[![Versions][3]][4]
 
 *Binding Supplies* utility library.
 
@@ -14,7 +15,7 @@ Usage
 handle the view inflation and updates. The configuration of the binding happens within the provided
 `DataBindingAdapter.Binder` instances.
 
-    provided "com.android.support:recyclerview-v7:$androidSupportVersion"
+    implementation "com.android.support:recyclerview-v7:$androidSupportVersion"
 
 ### DataBindingPagerAdapter
 
@@ -22,7 +23,7 @@ handle the view inflation and updates. The configuration of the binding happens 
 `ViewDataBinding`. The configuration of the binding happens within the provided
 `DataBindingPagerAdapter.Binder` instances.
 
-    provided "com.android.support:support-core-ui:$androidSupportVersion"
+    implementation "com.android.support:support-core-ui:$androidSupportVersion"
 
 ### @BindingAdapter & @BindingMethods
 
@@ -43,14 +44,14 @@ Add [JitPack][2] to your repositories and *Binding Supplies* to your
 dependencies
 
     dependencies {
-        compile "berlin.volders.supplies:binding:$suppliesVersion"
+        implementation "com.github.v2rc.supplies:binding:$suppliesVersion"
     }
 
 
 License
 -------
 
-    Copyright (C) 2016 volders GmbH with <3 in Berlin
+    Copyright (C) 2016-2017  volders GmbH with <3 in Berlin
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -65,5 +66,7 @@ License
     limitations under the License.
 
 
-  [1]: https://jitpack.io/v/berlin.volders.supplies/binding.svg
-  [2]: https://jitpack.io/#berlin.volders.supplies/binding
+  [1]: https://jitpack.io/v/com.github.v2rc.supplies/binding.svg
+  [2]: https://jitpack.io/#com.github.v2rc.supplies/binding
+  [3]: https://asapi.herokuapp.com/com.github.v2rc.supplies/binding@svg
+  [4]: https://asapi.herokuapp.com/com.github.v2rc.supplies/binding

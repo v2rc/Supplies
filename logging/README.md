@@ -1,6 +1,7 @@
 Logging Supplies
 ================
 [![Release][1]][2]
+[![Versions][3]][4]
 
 *Logging Supplies* utility library.
 
@@ -13,14 +14,14 @@ Usage
 *FirebaseTree* implements a `Timber.Tree` logging messages and errors with a tag
 to `FirebaseCrash`.
 
-    provided 'com.google.firebase:firebase-crash:10.2.+'
-    provided 'com.jakewharton.timber:timber:4.5.+'
+    implementation 'com.google.firebase:firebase-crash:11.8.+'
+    implementation 'com.jakewharton.timber:timber:4.5.+'
 
 ### LogToTimber
 
 *LogToTimber* is a simple logger with a method `log(String)` logging to `Timber`.
 
-    provided 'com.jakewharton.timber:timber:4.5.+'
+    implementation 'com.jakewharton.timber:timber:4.5.+'
 
 This is especially useful when implementing logger interfaces only declaring
 this single method.
@@ -40,14 +41,14 @@ Add [JitPack][2] to your repositories and *Logging Supplies* to your
 dependencies
 
     dependencies {
-        compile "berlin.volders.supplies:logging:$suppliesVersion"
+        implementation "com.github.v2rc.supplies:logging:$suppliesVersion"
     }
 
 
 License
 -------
 
-    Copyright (C) 2016 volders GmbH with <3 in Berlin
+    Copyright (C) 2016-2017  volders GmbH with <3 in Berlin
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -62,5 +63,7 @@ License
     limitations under the License.
 
 
-  [1]: https://jitpack.io/v/berlin.volders.supplies/logging.svg
-  [2]: https://jitpack.io/#berlin.volders.supplies/logging
+  [1]: https://jitpack.io/v/com.github.v2rc.supplies/logging.svg
+  [2]: https://jitpack.io/#com.github.v2rc.supplies/logging
+  [3]: https://asapi.herokuapp.com/com.github.v2rc.supplies/logging@svg
+  [4]: https://asapi.herokuapp.com/com.github.v2rc.supplies/logging

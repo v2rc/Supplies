@@ -2,6 +2,7 @@
 ==========================
 [![Build][1]][2]
 [![Release][3]][4]
+[![Versions][7]][8]
 
 *Supplies* is a collection of utility libraries implementing basic behaviors.
 
@@ -10,10 +11,10 @@ Usage
 -----
 
 Every single library is unique in itself and provides information about how it
-should be used. In general all dependencies are `provided` dependencies.
+should be used. In general all dependencies are `implementation` dependencies.
 
 Projects depending on the supplies have to make sure to define a `compile`
-dependency for all required and used `provided` dependencies.
+dependency for all required and used `implementation` dependencies.
 
  * [*Binding Supplies*](binding) — `DataBindingPagerAdapter`
                                  · `DataBindingAdapter`
@@ -35,24 +36,24 @@ Installation
 Add [JitPack][4] to your repositories and *Supplies* to your dependencies
 
     dependencies {
-        compile "berlin.volders.supplies:all:$suppliesVersion"
+        implementation "com.github.v2rc.supplies:all:$suppliesVersion"
     }
 
 Also any of the single libraries can be added directly
 
     dependencies {
-        compile "berlin.volders.supplies:binding:$suppliesVersion"
-        compile "berlin.volders.supplies:logging:$suppliesVersion"
-        compile "berlin.volders.supplies:parcel:$suppliesVersion"
-        compile "berlin.volders.supplies:reactive:$suppliesVersion"
-        compile "berlin.volders.supplies:reactive2:$suppliesVersion"
+        implementation "com.github.v2rc.supplies:binding:$suppliesVersion"
+        implementation "com.github.v2rc.supplies:logging:$suppliesVersion"
+        implementation "com.github.v2rc.supplies:parcel:$suppliesVersion"
+        implementation "com.github.v2rc.supplies:reactive:$suppliesVersion"
+        implementation "com.github.v2rc.supplies:reactive2:$suppliesVersion"
     }
 
 
 License
 -------
 
-    Copyright (C) 2016 volders GmbH with <3 in Berlin
+    Copyright (C) 2016-2017  volders GmbH with <3 in Berlin
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -67,7 +68,9 @@ License
     limitations under the License.
 
 
-  [1]: https://travis-ci.org/volders/Supplies.svg?branch=master
-  [2]: https://travis-ci.org/volders/Supplies
-  [3]: https://jitpack.io/v/berlin.volders/supplies.svg
-  [4]: https://jitpack.io/#berlin.volders/supplies
+  [1]: https://travis-ci.org/v2rc/Supplies.svg?branch=master
+  [2]: https://travis-ci.org/v2rc/Supplies
+  [3]: https://jitpack.io/v/v2rc/supplies.svg
+  [4]: https://jitpack.io/#v2rc/supplies
+  [7]: https://asapi.herokuapp.com/com.github.v2rc.supplies/all@svg
+  [8]: https://asapi.herokuapp.com/com.github.v2rc.supplies/all

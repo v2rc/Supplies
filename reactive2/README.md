@@ -1,6 +1,7 @@
 Reactive2 Supplies
 ==================
 [![Release][1]][2]
+[![Versions][3]][4]
 
 *Reactive2 Supplies* utility library.
 
@@ -10,7 +11,7 @@ Usage
 
 Collected Rx2 enclosed utilities.
 
-    provided 'io.reactivex:rxjava:2.1.+'
+    implementation 'io.reactivex:rxjava:2.1.+'
 
 ### ObservableGlue
 
@@ -35,7 +36,7 @@ to the reactive stream.
 
 <!---->
 
-    provided 'com.squareup.okhttp3:okhttp:3.8.+'
+    implementation 'com.squareup.okhttp3:okhttp:3.9.+'
 
 In contrast to Rx1, `null` values are not supported with Rx2. Therefore
 only primitive values are supported directly. For an `ObservableField` it is
@@ -54,14 +55,14 @@ Add [JitPack][2] to your repositories and *Reactive2 Supplies* to your
 dependencies
 
     dependencies {
-        compile "berlin.volders.supplies:reactive2:$suppliesVersion"
+        implementation "com.github.v2rc.supplies:reactive2:$suppliesVersion"
     }
 
 
 License
 -------
 
-    Copyright (C) 2016 volders GmbH with <3 in Berlin
+    Copyright (C) 2016-2017  volders GmbH with <3 in Berlin
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -76,5 +77,7 @@ License
     limitations under the License.
 
 
-  [1]: https://jitpack.io/v/berlin.volders.supplies/reactive2.svg
-  [2]: https://jitpack.io/#berlin.volders.supplies/reactive2
+  [1]: https://jitpack.io/v/com.github.v2rc.supplies/reactive2.svg
+  [2]: https://jitpack.io/#com.github.v2rc.supplies/reactive2
+  [3]: https://asapi.herokuapp.com/com.github.v2rc.supplies/reactive2@svg
+  [4]: https://asapi.herokuapp.com/com.github.v2rc.supplies/reactive2

@@ -5,12 +5,12 @@ android {
     }
 }
 
-conf2ScopeMappings.addMapping 200, configurations.compile, 'compile'
+conf2ScopeMappings.addMapping 200, configurations.api, 'compile'
 
 dependencies {
-    compile project(':binding')
-    compile project(':logging')
-    compile project(':parcel')
-    compile project(':reactive')
-    compile project(':reactive2')
+    api project(':binding')
+    api project(':logging')
+    api project(':parcel')
+    api project(':reactive')
+    api project(':reactive2')
 }

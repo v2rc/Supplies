@@ -7,6 +7,6 @@ android {
 
 dependencies {
     //noinspection GradleDynamicVersion
-    provided 'com.jakewharton.timber:timber:4.5.+'
-    provided "com.google.firebase:firebase-crash:$firebaseVersion"
+    implementation 'com.jakewharton.timber:timber:4.5.+'
+    implementation "com.google.firebase:firebase-crash:$firebaseVersion"
 }

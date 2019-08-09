@@ -16,16 +16,16 @@
 
 package berlin.volders.supplies.reactive2;
 
-import android.databinding.Observable;
-import android.databinding.ObservableBoolean;
-import android.databinding.ObservableByte;
-import android.databinding.ObservableDouble;
-import android.databinding.ObservableField;
-import android.databinding.ObservableFloat;
-import android.databinding.ObservableInt;
-import android.databinding.ObservableLong;
-import android.databinding.ObservableShort;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
+import androidx.databinding.Observable;
+import androidx.databinding.ObservableBoolean;
+import androidx.databinding.ObservableByte;
+import androidx.databinding.ObservableDouble;
+import androidx.databinding.ObservableField;
+import androidx.databinding.ObservableFloat;
+import androidx.databinding.ObservableInt;
+import androidx.databinding.ObservableLong;
+import androidx.databinding.ObservableShort;
 
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
@@ -41,6 +41,7 @@ import io.reactivex.functions.Function;
  * @param <T> the type of the data binding {@link Observable}
  * @param <R> the value type being observed
  */
+@SuppressWarnings("WeakerAccess")
 public class ObservableGlue<T extends Observable, R> implements FlowableOnSubscribe<R> {
 
     final T observable;
@@ -56,7 +57,7 @@ public class ObservableGlue<T extends Observable, R> implements FlowableOnSubscr
     }
 
     @Override
-    public void subscribe(FlowableEmitter<R> emitter) throws Exception {
+    public void subscribe(FlowableEmitter<R> emitter) {
         emitter.setCancellable(new OnGlue(emitter));
     }
 
@@ -81,7 +82,7 @@ public class ObservableGlue<T extends Observable, R> implements FlowableOnSubscr
         }
 
         @Override
-        public void cancel() throws Exception {
+        public void cancel() {
             observable.removeOnPropertyChangedCallback(this);
         }
 
@@ -138,13 +139,13 @@ public class ObservableGlue<T extends Observable, R> implements FlowableOnSubscr
     }
 
     /**
-     * Glues to an {@code ObservableBoolean} and emits its values
+     * Glues to an {@code ObservableBoolean} and emits its values or {@code false}
      *
      * @param observable to observe
      * @return a {@link Flowable} emitting the updates from {@code observable}
      */
     public static Flowable<Boolean> with(@NonNull ObservableBoolean observable) {
-        return with(observable, 0, null, new Function<ObservableBoolean, Boolean>() {
+        return with(observable, 0, false, new Function<ObservableBoolean, Boolean>() {
             @Override
             public Boolean apply(ObservableBoolean observableBoolean) {
                 return observableBoolean.get();
@@ -153,13 +154,13 @@ public class ObservableGlue<T extends Observable, R> implements FlowableOnSubscr
     }
 
     /**
-     * Glues to an {@code ObservableByte} and emits its values
+     * Glues to an {@code ObservableByte} and emits its values or {@code 0}
      *
      * @param observable to observe
      * @return a {@link Flowable} emitting the updates from {@code observable}
      */
     public static Flowable<Byte> with(@NonNull ObservableByte observable) {
-        return with(observable, 0, null, new Function<ObservableByte, Byte>() {
+        return with(observable, 0, (byte) 0, new Function<ObservableByte, Byte>() {
             @Override
             public Byte apply(ObservableByte observableByte) {
                 return observableByte.get();
@@ -168,13 +169,13 @@ public class ObservableGlue<T extends Observable, R> implements FlowableOnSubscr
     }
 
     /**
-     * Glues to an {@code ObservableDouble} and emits its values
+     * Glues to an {@code ObservableDouble} and emits its values or {@code 0}
      *
      * @param observable to observe
      * @return a {@link Flowable} emitting the updates from {@code observable}
      */
     public static Flowable<Double> with(@NonNull ObservableDouble observable) {
-        return with(observable, 0, null, new Function<ObservableDouble, Double>() {
+        return with(observable, 0, (double) 0, new Function<ObservableDouble, Double>() {
             @Override
             public Double apply(ObservableDouble observableDouble) {
                 return observableDouble.get();
@@ -183,13 +184,13 @@ public class ObservableGlue<T extends Observable, R> implements FlowableOnSubscr
     }
 
     /**
-     * Glues to an {@code ObservableFloat} and emits its values
+     * Glues to an {@code ObservableFloat} and emits its values or {@code 0}
      *
      * @param observable to observe
      * @return a {@link Flowable} emitting the updates from {@code observable}
      */
     public static Flowable<Float> with(@NonNull ObservableFloat observable) {
-        return with(observable, 0, null, new Function<ObservableFloat, Float>() {
+        return with(observable, 0, (float) 0, new Function<ObservableFloat, Float>() {
             @Override
             public Float apply(ObservableFloat observableFloat) {
                 return observableFloat.get();
@@ -198,13 +199,13 @@ public class ObservableGlue<T extends Observable, R> implements FlowableOnSubscr
     }
 
     /**
-     * Glues to an {@code Observableint} and emits its values
+     * Glues to an {@code Observableint} and emits its values or {@code 0}
      *
      * @param observable to observe
      * @return a {@link Flowable} emitting the updates from {@code observable}
      */
     public static Flowable<Integer> with(@NonNull ObservableInt observable) {
-        return with(observable, 0, null, new Function<ObservableInt, Integer>() {
+        return with(observable, 0, 0, new Function<ObservableInt, Integer>() {
             @Override
             public Integer apply(ObservableInt observableInt) {
                 return observableInt.get();
@@ -213,13 +214,13 @@ public class ObservableGlue<T extends Observable, R> implements FlowableOnSubscr
     }
 
     /**
-     * Glues to an {@code ObservableLong} and emits its values
+     * Glues to an {@code ObservableLong} and emits its values or {@code 0}
      *
      * @param observable to observe
      * @return a {@link Flowable} emitting the updates from {@code observable}
      */
     public static Flowable<Long> with(@NonNull ObservableLong observable) {
-        return with(observable, 0, null, new Function<ObservableLong, Long>() {
+        return with(observable, 0, (long) 0, new Function<ObservableLong, Long>() {
             @Override
             public Long apply(ObservableLong observableLong) {
                 return observableLong.get();
@@ -228,13 +229,13 @@ public class ObservableGlue<T extends Observable, R> implements FlowableOnSubscr
     }
 
     /**
-     * Glues to an {@code ObservableShort} and emits its values
+     * Glues to an {@code ObservableShort} and emits its values or {@code 0}
      *
      * @param observable to observe
      * @return a {@link Flowable} emitting the updates from {@code observable}
      */
     public static Flowable<Short> with(@NonNull ObservableShort observable) {
-        return with(observable, 0, null, new Function<ObservableShort, Short>() {
+        return with(observable, 0, (short) 0, new Function<ObservableShort, Short>() {
             @Override
             public Short apply(ObservableShort observableShort) {
                 return observableShort.get();

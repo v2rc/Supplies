@@ -5,8 +5,8 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
+        classpath 'com.android.tools.build:gradle:3.4.2'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
     }
 }
 
@@ -25,16 +25,14 @@ subprojects {
     apply plugin: 'com.github.dcendents.android-maven'
 
     android {
-        compileSdkVersion 26
-        buildToolsVersion '26.0.3'
+        compileSdkVersion 29
 
         defaultConfig {
-            targetSdkVersion 26
-            testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+            targetSdkVersion 29
+            testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         }
 
         dataBinding {
-            addDefaultAdapters false
             enabled false
         }
     }
@@ -44,9 +42,9 @@ subprojects {
     conf2ScopeMappings.addMapping 400, configurations.compileOnly, 'provided'
 
     dependencies {
-        compileOnly "com.android.support:support-annotations:$project.androidSupportVersion"
+        implementation 'androidx.annotation:annotation:1.1.0'
         testImplementation 'junit:junit:4.12'
-        androidTestImplementation 'com.android.support.test:runner:1.0.1'
+        androidTestImplementation 'androidx.test:runner:1.2.0'
     }
 
     task sourcesJar(type: Jar) {

@@ -16,11 +16,13 @@
 
 package berlin.volders.supplies.binding;
 
-import android.support.annotation.CallSuper;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
+
+import androidx.annotation.CallSuper;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,6 +32,7 @@ import java.util.List;
  *
  * @param <M> common Model type this adapter handles
  */
+@SuppressWarnings({"unused", "WeakerAccess"})
 public abstract class DataBindingAdapter<M> extends RecyclerView.Adapter<DataBindingViewHolder> {
 
     private final DataBinders<M, Binder<? super M>> binders;
@@ -77,13 +80,13 @@ public abstract class DataBindingAdapter<M> extends RecyclerView.Adapter<DataBin
     }
 
     @Override
-    public final DataBindingViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public final DataBindingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return DataBindingViewHolder.inflate(viewType, parent);
     }
 
     @Override
     @CallSuper
-    public void onBindViewHolder(DataBindingViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull DataBindingViewHolder holder, int position) {
         M item = getItem(position);
         holder.update(binders.tie(item).bindingId, item);
     }

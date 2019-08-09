@@ -1,11 +1,14 @@
 package berlin.volders.supplies.reactive2;
 
+import androidx.annotation.NonNull;
+
 import java.io.IOException;
 
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Request;
 import okhttp3.Response;
+import okio.Timeout;
 
 class StubCall implements Call {
 
@@ -18,7 +21,7 @@ class StubCall implements Call {
     }
 
     @Override
-    public Response execute() throws IOException {
+    public Response execute() {
         return null;
     }
 
@@ -43,8 +46,14 @@ class StubCall implements Call {
     }
 
     @Override
-    public Call clone() {
+    public Timeout timeout() {
         return null;
+    }
+
+    @NonNull
+    @Override
+    public Call clone() {
+        throw new IllegalStateException();
     }
 
     void doOnResponse(Response response) throws IOException {

@@ -25,10 +25,10 @@ class DataBinders<M, B extends DataBinder<? super M>> {
 
     DataBinders(List<B> binders) {
         if (binders == null || binders.contains(null)) {
-            throw new NullPointerException("null binder found");
+            throw new IllegalArgumentException("null binder found");
         }
         if (binders.isEmpty()) {
-            throw new IllegalStateException("no binder found");
+            throw new IllegalArgumentException("no binder found");
         }
         this.binders = new ArrayList<>(binders);
     }

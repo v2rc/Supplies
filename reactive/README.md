@@ -37,7 +37,7 @@ to the reactive stream.
 
 <!---->
 
-    provided 'com.squareup.okhttp3:okhttp:3.9.+'
+    provided 'com.squareup.okhttp3:okhttp:3.12.+'
 
 
 Installation

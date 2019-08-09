@@ -16,15 +16,17 @@
 
 package berlin.volders.supplies.binding;
 
-import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
-import android.support.annotation.CallSuper;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.Nullable;
-import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.CallSuper;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
+import androidx.viewpager.widget.PagerAdapter;
 
 import java.util.Arrays;
 import java.util.List;
@@ -34,6 +36,7 @@ import java.util.List;
  *
  * @param <M> common Model type this adapter handles
  */
+@SuppressWarnings({"unused", "WeakerAccess"})
 public abstract class DataBindingPagerAdapter<M> extends PagerAdapter {
 
     private final DataBinders<M, Binder<? super M>> binders;
@@ -68,6 +71,7 @@ public abstract class DataBindingPagerAdapter<M> extends PagerAdapter {
         this.binders = new DataBinders<>(binders);
     }
 
+    @NonNull
     @Override
     public final ViewDataBinding instantiateItem(ViewGroup container, int position) {
         M item = getItem(position);
@@ -81,12 +85,12 @@ public abstract class DataBindingPagerAdapter<M> extends PagerAdapter {
 
     @Override
     @CallSuper
-    public void destroyItem(ViewGroup container, int position, Object object) {
+    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
         container.removeView(((ViewDataBinding) object).getRoot());
     }
 
     @Override
-    public final boolean isViewFromObject(View view, Object object) {
+    public final boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
         return ((ViewDataBinding) object).getRoot() == view;
     }
 

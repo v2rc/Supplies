@@ -43,7 +43,7 @@ public class RxOkCallTest {
     }
 
     @Test
-    public void from_failure() throws Exception {
+    public void from_failure() {
         TestObserver<Response> observer
                 = RxOkCall.from(call).test();
         call.doOnFailure();
@@ -53,7 +53,7 @@ public class RxOkCallTest {
     }
 
     @Test
-    public void from_unsubscribe() throws Exception {
+    public void from_unsubscribe() {
         TestObserver<Response> observer
                 = RxOkCall.from(call).test();
         observer.dispose();

@@ -15,7 +15,7 @@ Usage
 handle the view inflation and updates. The configuration of the binding happens within the provided
 `DataBindingAdapter.Binder` instances.
 
-    implementation "com.android.support:recyclerview-v7:$androidSupportVersion"
+    implementation 'androidx.recyclerview:recyclerview:1.0.+'
 
 ### DataBindingPagerAdapter
 
@@ -23,7 +23,8 @@ handle the view inflation and updates. The configuration of the binding happens 
 `ViewDataBinding`. The configuration of the binding happens within the provided
 `DataBindingPagerAdapter.Binder` instances.
 
-    implementation "com.android.support:support-core-ui:$androidSupportVersion"
+    implementation 'androidx.viewpager:viewpager:1.0.+'
+    implementation 'com.google.android.material:material:1.0.+'
 
 ### @BindingAdapter & @BindingMethods
 

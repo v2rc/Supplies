@@ -5,14 +5,15 @@ android {
     }
 
     dataBinding {
-        addDefaultAdapters true
         enabled true
     }
 }
 
 dependencies {
-    implementation "com.android.support:support-v4:$androidSupportVersion"
-    implementation "com.android.support:design:$androidSupportVersion"
-    implementation "com.android.support:recyclerview-v7:$androidSupportVersion"
-    implementation "com.android.support:support-core-ui:$androidSupportVersion"
+    //noinspection GradleDynamicVersion
+    implementation 'androidx.viewpager:viewpager:1.0.+'
+    //noinspection GradleDynamicVersion
+    implementation 'androidx.recyclerview:recyclerview:1.0.+'
+    //noinspection GradleDynamicVersion
+    implementation 'com.google.android.material:material:1.0.+'
 }

@@ -16,8 +16,8 @@
 
 package berlin.volders.supplies.binding;
 
-import android.support.annotation.LayoutRes;
-import android.support.annotation.Nullable;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.Nullable;
 
 abstract class DataBinder<M> {
 

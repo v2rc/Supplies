@@ -21,6 +21,7 @@ import timber.log.Timber;
 /**
  * A simple implementation of a common log interface; logging with {@link Timber}.
  */
+@SuppressWarnings("unused")
 public abstract class LogToTimber {
 
     private final String tag;

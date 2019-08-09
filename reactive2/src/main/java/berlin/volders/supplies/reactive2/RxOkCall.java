@@ -33,6 +33,7 @@ import okhttp3.Response;
 /**
  * Wraps {@link Call} into a cold {@link Single} which emits the response or any error
  */
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class RxOkCall extends Single<Response> {
 
     private final Call call;
@@ -61,7 +62,7 @@ public class RxOkCall extends Single<Response> {
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(Call call, Response response) {
                 observer.onSuccess(response);
             }
         });

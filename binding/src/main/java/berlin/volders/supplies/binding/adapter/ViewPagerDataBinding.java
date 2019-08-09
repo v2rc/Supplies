@@ -16,15 +16,16 @@
 
 package berlin.volders.supplies.binding.adapter;
 
-import android.databinding.BindingAdapter;
-import android.databinding.BindingMethod;
-import android.databinding.BindingMethods;
-import android.databinding.InverseBindingListener;
-import android.databinding.InverseBindingMethod;
-import android.databinding.InverseBindingMethods;
-import android.databinding.adapters.ListenerUtil;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
+import androidx.databinding.BindingAdapter;
+import androidx.databinding.BindingMethod;
+import androidx.databinding.BindingMethods;
+import androidx.databinding.InverseBindingListener;
+import androidx.databinding.InverseBindingMethod;
+import androidx.databinding.InverseBindingMethods;
+import androidx.databinding.adapters.ListenerUtil;
+import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.material.tabs.TabLayout;
 
 import berlin.volders.supplies.binding.R;
 
@@ -42,6 +43,7 @@ import berlin.volders.supplies.binding.R;
                 type = ViewPager.class,
                 attribute = "currentItem")
 )
+@SuppressWarnings("unused")
 public class ViewPagerDataBinding {
 
     private ViewPagerDataBinding() {

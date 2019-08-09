@@ -36,9 +36,9 @@ to the reactive stream.
 
 <!---->
 
-    implementation 'com.squareup.okhttp3:okhttp:3.9.+'
+    implementation 'com.squareup.okhttp3:okhttp:3.12.+'
 
-In contrast to Rx1, `null` values are not supported with Rx2. Therefore
+In contrast to Rx1, `null` values are not permitted in Rx2. Therefore
 only primitive values are supported directly. For an `ObservableField` it is
 necessary to implement a Null Object pattern or wrap the field value with an
 `Optional` or similar.

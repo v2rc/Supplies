@@ -25,6 +25,7 @@ import org.threeten.bp.LocalTime;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
+@SuppressWarnings("WeakerAccess")
 public class LocalTimeParcelAdapterTest {
 
     final long nanoOfDay = 9876543210L;
@@ -40,7 +41,7 @@ public class LocalTimeParcelAdapterTest {
     }
 
     @Test
-    public void fromParcel() throws Exception {
+    public void fromParcel() {
         parcel.writeLong(nanoOfDay);
         parcel.setDataPosition(0);
 
@@ -50,7 +51,7 @@ public class LocalTimeParcelAdapterTest {
     }
 
     @Test
-    public void toParcel() throws Exception {
+    public void toParcel() {
         adapter.toParcel(LocalTime.ofNanoOfDay(nanoOfDay), parcel);
         parcel.setDataPosition(0);
 

@@ -13,7 +13,7 @@ Usage
 
 *AutoValue: Parcel Extension TypeAdapter* handling ThreeTen ABP `Local[Date|Time]` date classes.
 
-    implementation 'com.jakewharton.threetenabp:threetenabp:1.0.+'
+    implementation 'com.jakewharton.threetenabp:threetenabp:1.2.+'
     implementation 'com.ryanharter.auto.value:auto-value-parcel-adapter:0.2.+'
 
 

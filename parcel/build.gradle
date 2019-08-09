@@ -7,7 +7,7 @@ android {
 
 dependencies {
     //noinspection GradleDynamicVersion
-    implementation 'com.jakewharton.threetenabp:threetenabp:1.0.+'
+    implementation 'com.jakewharton.threetenabp:threetenabp:1.2.+'
     //noinspection GradleDynamicVersion
     implementation 'com.ryanharter.auto.value:auto-value-parcel-adapter:0.2.+'
 }

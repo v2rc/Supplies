@@ -25,6 +25,7 @@ import org.threeten.bp.LocalDate;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
+@SuppressWarnings("WeakerAccess")
 public class LocalDateParcelAdapterTest {
 
     final long epochDay = 1234567890L;
@@ -40,7 +41,7 @@ public class LocalDateParcelAdapterTest {
     }
 
     @Test
-    public void fromParcel() throws Exception {
+    public void fromParcel() {
         parcel.writeLong(epochDay);
         parcel.setDataPosition(0);
 
@@ -50,7 +51,7 @@ public class LocalDateParcelAdapterTest {
     }
 
     @Test
-    public void toParcel() throws Exception {
+    public void toParcel() {
         adapter.toParcel(LocalDate.ofEpochDay(epochDay), parcel);
         parcel.setDataPosition(0);
 

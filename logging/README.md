@@ -14,14 +14,14 @@ Usage
 *FirebaseTree* implements a `Timber.Tree` logging messages and errors with a tag
 to `FirebaseCrash`.
 
-    implementation 'com.google.firebase:firebase-crash:11.8.+'
-    implementation 'com.jakewharton.timber:timber:4.5.+'
+    implementation 'com.google.firebase:firebase-crash:16.2.+'
+    implementation 'com.jakewharton.timber:timber:4.7.+'
 
 ### LogToTimber
 
 *LogToTimber* is a simple logger with a method `log(String)` logging to `Timber`.
 
-    implementation 'com.jakewharton.timber:timber:4.5.+'
+    implementation 'com.jakewharton.timber:timber:4.7.+'
 
 This is especially useful when implementing logger interfaces only declaring
 this single method.

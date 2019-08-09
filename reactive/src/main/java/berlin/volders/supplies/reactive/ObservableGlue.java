@@ -16,16 +16,16 @@
 
 package berlin.volders.supplies.reactive;
 
-import android.databinding.Observable;
-import android.databinding.ObservableBoolean;
-import android.databinding.ObservableByte;
-import android.databinding.ObservableDouble;
-import android.databinding.ObservableField;
-import android.databinding.ObservableFloat;
-import android.databinding.ObservableInt;
-import android.databinding.ObservableLong;
-import android.databinding.ObservableShort;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
+import androidx.databinding.Observable;
+import androidx.databinding.ObservableBoolean;
+import androidx.databinding.ObservableByte;
+import androidx.databinding.ObservableDouble;
+import androidx.databinding.ObservableField;
+import androidx.databinding.ObservableFloat;
+import androidx.databinding.ObservableInt;
+import androidx.databinding.ObservableLong;
+import androidx.databinding.ObservableShort;
 
 import rx.Subscriber;
 import rx.functions.Action0;
@@ -39,6 +39,7 @@ import rx.subscriptions.Subscriptions;
  * @param <T> the type of the data binding {@link Observable}
  * @param <R> the value type being observed
  */
+@SuppressWarnings("WeakerAccess")
 public class ObservableGlue<T extends Observable, R> implements rx.Observable.OnSubscribe<R> {
 
     final T observable;
@@ -107,6 +108,7 @@ public class ObservableGlue<T extends Observable, R> implements rx.Observable.On
      * @param <R>        the value type being observed
      * @return an {@link rx.Observable} emitting the updates from {@code observable}
      */
+    @SuppressWarnings("deprecation")
     public static <T extends Observable, R> rx.Observable<R>
     with(@NonNull T observable, int property, @NonNull Func1<T, R> value) {
         return rx.Observable.create(new ObservableGlue<>(observable, property, value))

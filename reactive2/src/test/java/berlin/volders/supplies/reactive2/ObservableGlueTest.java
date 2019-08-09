@@ -16,15 +16,16 @@
 
 package berlin.volders.supplies.reactive2;
 
-import android.databinding.BaseObservable;
-import android.databinding.ObservableBoolean;
-import android.databinding.ObservableByte;
-import android.databinding.ObservableDouble;
-import android.databinding.ObservableField;
-import android.databinding.ObservableFloat;
-import android.databinding.ObservableInt;
-import android.databinding.ObservableLong;
-import android.databinding.ObservableShort;
+import androidx.annotation.NonNull;
+import androidx.databinding.BaseObservable;
+import androidx.databinding.ObservableBoolean;
+import androidx.databinding.ObservableByte;
+import androidx.databinding.ObservableDouble;
+import androidx.databinding.ObservableField;
+import androidx.databinding.ObservableFloat;
+import androidx.databinding.ObservableInt;
+import androidx.databinding.ObservableLong;
+import androidx.databinding.ObservableShort;
 
 import org.junit.Test;
 
@@ -34,12 +35,13 @@ import io.reactivex.subscribers.TestSubscriber;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+@SuppressWarnings("WeakerAccess")
 public class ObservableGlueTest {
 
     final String nullValue = "nullValue";
 
     @Test
-    public void onPropertyChanged() throws Exception {
+    public void onPropertyChanged() {
         TestObservable<String> observable = new TestObservable<>();
         TestSubscriber<String> subscriber
                 = ObservableGlue.with(observable, TestObservable.ID, nullValue, observable).test();
@@ -53,7 +55,7 @@ public class ObservableGlueTest {
     }
 
     @Test
-    public void subscribe() throws Exception {
+    public void subscribe() {
         TestObservable<String> observable = new TestObservable<>();
         TestSubscriber<String> subscriber
                 = ObservableGlue.with(observable, TestObservable.ID, nullValue, observable).test();
@@ -65,7 +67,7 @@ public class ObservableGlueTest {
     }
 
     @Test
-    public void unsubscribe() throws Exception {
+    public void unsubscribe() {
         TestObservable<String> observable = new TestObservable<>();
         TestSubscriber<String> subscriber
                 = ObservableGlue.with(observable, TestObservable.ID, nullValue, observable).test();
@@ -79,7 +81,7 @@ public class ObservableGlueTest {
     }
 
     @Test
-    public void with_ObservableBoolean() throws Exception {
+    public void with_ObservableBoolean() {
         ObservableBoolean observable = new ObservableBoolean();
         TestSubscriber<Boolean> subscriber
                 = ObservableGlue.with(observable).test();
@@ -92,7 +94,7 @@ public class ObservableGlueTest {
     }
 
     @Test
-    public void with_ObservableByte() throws Exception {
+    public void with_ObservableByte() {
         ObservableByte observable = new ObservableByte();
         TestSubscriber<Byte> subscriber
                 = ObservableGlue.with(observable).test();
@@ -105,7 +107,7 @@ public class ObservableGlueTest {
     }
 
     @Test
-    public void with_ObservableDouble() throws Exception {
+    public void with_ObservableDouble() {
         ObservableDouble observable = new ObservableDouble();
         TestSubscriber<Double> subscriber
                 = ObservableGlue.with(observable).test();
@@ -118,7 +120,7 @@ public class ObservableGlueTest {
     }
 
     @Test
-    public void with_ObservableField() throws Exception {
+    public void with_ObservableField() {
         ObservableField<String> observable = new ObservableField<>();
         TestSubscriber<String> subscriber
                 = ObservableGlue.with(observable, nullValue).test();
@@ -131,7 +133,7 @@ public class ObservableGlueTest {
     }
 
     @Test
-    public void with_ObservableFloat() throws Exception {
+    public void with_ObservableFloat() {
         ObservableFloat observable = new ObservableFloat();
         TestSubscriber<Float> subscriber
                 = ObservableGlue.with(observable).test();
@@ -144,7 +146,7 @@ public class ObservableGlueTest {
     }
 
     @Test
-    public void with_ObservableInt() throws Exception {
+    public void with_ObservableInt() {
         ObservableInt observable = new ObservableInt();
         TestSubscriber<Integer> subscriber
                 = ObservableGlue.with(observable).test();
@@ -157,10 +159,10 @@ public class ObservableGlueTest {
     }
 
     @Test
-    public void with_ObservableLong() throws Exception {
+    public void with_ObservableLong() {
         ObservableLong observable = new ObservableLong();
-        TestSubscriber<Long> subscriber
-                = ObservableGlue.with(observable).test();
+        TestSubscriber<Long> subscriber =
+                ObservableGlue.with(observable).test();
 
         observable.set(1L);
 
@@ -170,11 +172,10 @@ public class ObservableGlueTest {
     }
 
     @Test
-    public void with_ObservableShort() throws Exception {
-        TestSubscriber<Short> subscriber = TestSubscriber.create();
+    public void with_ObservableShort() {
         ObservableShort observable = new ObservableShort();
-        ObservableGlue.with(observable)
-                .subscribe(subscriber);
+        TestSubscriber<Short> subscriber =
+                ObservableGlue.with(observable).test();
 
         observable.set((short) 1);
 
@@ -183,6 +184,7 @@ public class ObservableGlueTest {
         subscriber.assertValues((short) 0, (short) 1);
     }
 
+    @SuppressWarnings("SameParameterValue")
     static class TestObservable<T> extends BaseObservable implements Function<TestObservable<T>, T> {
 
         final static int ID = 1;
@@ -208,7 +210,7 @@ public class ObservableGlueTest {
         }
 
         @Override
-        public synchronized void addOnPropertyChangedCallback(OnPropertyChangedCallback callback) {
+        public synchronized void addOnPropertyChangedCallback(@NonNull OnPropertyChangedCallback callback) {
             super.addOnPropertyChangedCallback(callback);
             callbackSet = true;
         }
@@ -218,7 +220,7 @@ public class ObservableGlueTest {
         }
 
         @Override
-        public synchronized void removeOnPropertyChangedCallback(OnPropertyChangedCallback callback) {
+        public synchronized void removeOnPropertyChangedCallback(@NonNull OnPropertyChangedCallback callback) {
             super.removeOnPropertyChangedCallback(callback);
             callbackSet = false;
         }

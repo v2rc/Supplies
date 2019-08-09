@@ -16,7 +16,8 @@
 
 package berlin.volders.supplies.logging;
 
-import android.support.annotation.CallSuper;
+import androidx.annotation.CallSuper;
+import androidx.annotation.NonNull;
 
 import com.google.firebase.crash.FirebaseCrash;
 
@@ -27,6 +28,7 @@ import timber.log.Timber;
  * <p>
  * Logging is only delegated if and only if a given threshold for priority is reached.
  */
+@SuppressWarnings({"unused", "WeakerAccess"})
 public final class FirebaseTree extends Timber.Tree {
 
     private final int priority;
@@ -39,7 +41,7 @@ public final class FirebaseTree extends Timber.Tree {
     }
 
     @Override
-    protected final void log(int priority, String tag, String message, Throwable error) {
+    protected final void log(int priority, String tag, @NonNull String message, Throwable error) {
         if (this.priority <= priority) {
             onLog(tag, message, error);
         }

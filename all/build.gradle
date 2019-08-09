@@ -1,6 +1,5 @@
 android {
     defaultConfig {
-        minSdkVersion 15
         versionCode 1
     }
 }

@@ -20,41 +20,44 @@ import android.os.Parcel;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.threeten.bp.LocalTime;
+import org.junit.runner.RunWith;
+import org.robolectric.RobolectricTestRunner;
+import org.threeten.bp.LocalDate;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @SuppressWarnings("WeakerAccess")
-public class LocalTimeParcelAdapterTest {
+@RunWith(RobolectricTestRunner.class)
+public class LocalDateParcelAdapterTest {
 
-    final long nanoOfDay = 9876543210L;
+    final long epochDay = 1234567890L;
 
     Parcel parcel;
 
-    LocalTimeParcelAdapter adapter;
+    LocalDateParcelAdapter adapter;
 
     @Before
     public void setup() {
-        adapter = new LocalTimeParcelAdapter();
+        adapter = new LocalDateParcelAdapter();
         parcel = Parcel.obtain();
     }
 
     @Test
     public void fromParcel() {
-        parcel.writeLong(nanoOfDay);
+        parcel.writeLong(epochDay);
         parcel.setDataPosition(0);
 
-        LocalTime time = adapter.fromParcel(parcel);
+        LocalDate date = adapter.fromParcel(parcel);
 
-        assertThat(time.toNanoOfDay(), is(nanoOfDay));
+        assertThat(date.toEpochDay(), is(epochDay));
     }
 
     @Test
     public void toParcel() {
-        adapter.toParcel(LocalTime.ofNanoOfDay(nanoOfDay), parcel);
+        adapter.toParcel(LocalDate.ofEpochDay(epochDay), parcel);
         parcel.setDataPosition(0);
 
-        assertThat(parcel.readLong(), is(nanoOfDay));
+        assertThat(parcel.readLong(), is(epochDay));
     }
 }

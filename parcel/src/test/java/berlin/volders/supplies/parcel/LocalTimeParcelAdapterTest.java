@@ -20,49 +20,44 @@ import android.os.Parcel;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.threeten.bp.LocalDate;
-import org.threeten.bp.LocalDateTime;
+import org.junit.runner.RunWith;
+import org.robolectric.RobolectricTestRunner;
 import org.threeten.bp.LocalTime;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @SuppressWarnings("WeakerAccess")
-public class LocalDateTimeParcelAdapterTest {
+@RunWith(RobolectricTestRunner.class)
+public class LocalTimeParcelAdapterTest {
 
-    final long epochDay = 1234567890L;
     final long nanoOfDay = 9876543210L;
 
     Parcel parcel;
 
-    LocalDateTimeParcelAdapter adapter;
+    LocalTimeParcelAdapter adapter;
 
     @Before
     public void setup() {
-        adapter = new LocalDateTimeParcelAdapter();
+        adapter = new LocalTimeParcelAdapter();
         parcel = Parcel.obtain();
     }
 
     @Test
     public void fromParcel() {
-        parcel.writeLong(epochDay);
         parcel.writeLong(nanoOfDay);
         parcel.setDataPosition(0);
 
-        LocalDateTime dateTime = adapter.fromParcel(parcel);
+        LocalTime time = adapter.fromParcel(parcel);
 
-        assertThat(dateTime.toLocalDate().toEpochDay(), is(epochDay));
-        assertThat(dateTime.toLocalTime().toNanoOfDay(), is(nanoOfDay));
+        assertThat(time.toNanoOfDay(), is(nanoOfDay));
     }
 
     @Test
     public void toParcel() {
-        LocalDate date = LocalDate.ofEpochDay(epochDay);
-        LocalTime time = LocalTime.ofNanoOfDay(nanoOfDay);
-        adapter.toParcel(LocalDateTime.of(date, time), parcel);
+        adapter.toParcel(LocalTime.ofNanoOfDay(nanoOfDay), parcel);
         parcel.setDataPosition(0);
 
-        assertThat(parcel.readLong(), is(epochDay));
         assertThat(parcel.readLong(), is(nanoOfDay));
     }
 }

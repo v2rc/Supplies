@@ -10,11 +10,6 @@ buildscript {
     }
 }
 
-ext {
-    androidSupportVersion = '26.1.+'
-    firebaseVersion = '11.8.+'
-}
-
 subprojects {
     repositories {
         google()
@@ -28,6 +23,7 @@ subprojects {
         compileSdkVersion 29
 
         defaultConfig {
+            minSdkVersion 15
             targetSdkVersion 29
             testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         }
@@ -43,8 +39,6 @@ subprojects {
 
     dependencies {
         implementation 'androidx.annotation:annotation:1.1.0'
-        testImplementation 'junit:junit:4.12'
-        androidTestImplementation 'androidx.test:runner:1.2.0'
     }
 
     task sourcesJar(type: Jar) {
